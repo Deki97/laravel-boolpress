@@ -73,7 +73,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -85,7 +87,19 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $form_data = $request->all();
+        $request->validate($this->getValidationRules());
+
+        $post = Post::findOrFail($id);
+        
+        // Aggiorno slug soltanto se l'utente cambia il titolo
+        if($form_data['title'] != $post->title) {
+            $form_data['slug'] = $this->getUniqueSlug($form_data['title']);
+        }
+        
+        $post->update($form_data);
+
+        return redirect()->route('admin.posts.show', ['post' => $post->id]);
     }
 
     /**
