@@ -6,6 +6,11 @@
 
         <div class="mb-3">Slug: {{ $post->slug }}</div>
 
+        @if ($post->category)
+            <div class="mb-3">Categoria: {{ $post->category ? $post->category->name : 'Nessuna categoria' }}</div>
+        @endif
+
+        
         <p>{{ $post->content }}</p>
 
         <div>
