@@ -77,8 +77,14 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
+        $categories = Category::all();
 
-        return view('admin.posts.edit', compact('post'));
+        $data = [
+            'post' => $post,
+            'categories' => $categories
+        ];
+
+        return view('admin.posts.edit', $data);
     }
 
     /**
