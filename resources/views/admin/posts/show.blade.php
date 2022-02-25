@@ -10,6 +10,15 @@
             <div class="mb-3">Categoria: {{ $post->category ? $post->category->name : 'Nessuna categoria' }}</div>
         @endif
 
+        <div class="mb-3">
+            Tags:
+            @forelse ($post->tags as $tag)
+                {{ $tag->name }}{{ !$loop->last ? ', ' : '' }}
+            @empty
+                nessun tag
+            @endforelse
+        </div>
+
         
         <p>{{ $post->content }}</p>
 
