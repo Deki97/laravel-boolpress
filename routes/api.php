@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Qui dico che quando l'utente si trova in /api/posts, viene chiamata la funzione index del controller PostController
+Route::get('/posts', 'Api\PostController@index');
