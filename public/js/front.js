@@ -101,14 +101,81 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Posts',
   data: function data() {
     return {
-      posts: []
+      posts: [],
+      // Al caricamento della pagina verrà visualizzata di default la prima pagina (1)
+      currentPage: 1,
+      lastPage: false
     };
   },
-  methods: {}
+  methods: {
+    getAllPosts: function getAllPosts(numberPage) {
+      var _this = this;
+
+      axios.get('/api/posts', {
+        params: {
+          page: numberPage
+        }
+      }).then(function (response) {
+        _this.posts = response.data.results.data;
+        _this.currentPage = response.data.results.current_page;
+        _this.lastPage = response.data.results.last_page;
+      });
+    },
+    // Funzione che creo per tagliare automaticamente testi più lunghi di tot caratteri
+    // In modo da non mostrare all'utente tutto il contenuto, dato che poi nella show avrà il dettaglio completo
+    truncateText: function truncateText(text, maxNumberOfChars) {
+      if (text.lenght > maxNumberOfChars) {
+        // Se il testo è più lungo di tot caratteri, lo taglio e aggiungo 3 puntini alla fine
+        // In questo modo l'utente capisce che trova il contenuto completo nella show relativa
+        return text.substr(0, maxNumberOfChars) + '...';
+      }
+
+      return text;
+    }
+  },
+  created: function created() {
+    // Al created, ossia al caricamento della pagina verrà visualizzata la prima pagina (1)
+    this.getAllPosts(1);
+  }
 });
 
 /***/ }),
@@ -620,18 +687,113 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("h1", [_vm._v("Tutti i post")]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row row-cols-4" },
+      _vm._l(_vm.posts, function (post) {
+        return _c("div", { key: post.id, staticClass: "col" }, [
+          _c("div", { staticClass: "card mb-2" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("h5", { staticClass: "card-title" }, [
+                _vm._v(_vm._s(post.title)),
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "card-text" }, [
+                _vm._v(" " + _vm._s(_vm.truncateText(post.content, 80))),
+              ]),
+            ]),
+          ]),
+        ])
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c("nav", [
+      _c(
+        "ul",
+        { staticClass: "pagination" },
+        [
+          _c(
+            "li",
+            {
+              staticClass: "page-item",
+              class: { disabled: _vm.currentPage == 1 },
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "page-link",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.getAllPosts(_vm.currentPage - 1)
+                    },
+                  },
+                },
+                [_vm._v("Previous")]
+              ),
+            ]
+          ),
+          _vm._v(" "),
+          _vm._l(_vm.lastPage, function (page) {
+            return _c(
+              "li",
+              {
+                key: page,
+                staticClass: "page-item",
+                class: { active: _vm.currentPage == page },
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function ($event) {
+                        return _vm.getAllPosts(page)
+                      },
+                    },
+                  },
+                  [_vm._v(_vm._s(page))]
+                ),
+              ]
+            )
+          }),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass: "page-item",
+              class: { disabled: _vm.currentPage == _vm.lastPage },
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "page-link",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.getAllPosts(_vm.currentPage + 1)
+                    },
+                  },
+                },
+                [_vm._v("Next")]
+              ),
+            ]
+          ),
+        ],
+        2
+      ),
+    ]),
+  ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("h1", [_vm._v("Tutti i post")]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
