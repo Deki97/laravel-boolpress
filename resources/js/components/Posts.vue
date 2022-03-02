@@ -65,7 +65,7 @@ export default {
         // Funzione che creo per tagliare automaticamente testi più lunghi di tot caratteri
         // In modo da non mostrare all'utente tutto il contenuto, dato che poi nella show avrà il dettaglio completo
         truncateText: function(text, maxNumberOfChars) {
-            if(text.lenght > maxNumberOfChars) {
+            if(text.length > maxNumberOfChars) {
                 // Se il testo è più lungo di tot caratteri, lo taglio e aggiungo 3 puntini alla fine
                 // In questo modo l'utente capisce che trova il contenuto completo nella show relativa
                 return text.substr(0, maxNumberOfChars) + '...';
