@@ -1928,12 +1928,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Header'
+  name: 'Header',
+  data: function data() {
+    return {
+      linksMenu: [{
+        name: 'home',
+        label: 'Home'
+      }, {
+        name: 'about',
+        label: 'About'
+      }]
+    };
+  }
 });
 
 /***/ }),
@@ -2508,39 +2515,28 @@ var render = function () {
               attrs: { id: "navbarNav" },
             },
             [
-              _c("ul", { staticClass: "navbar-nav" }, [
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { to: { name: "home" } },
-                      },
-                      [_vm._v("Home")]
-                    ),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { to: { name: "about" } },
-                      },
-                      [_vm._v("About")]
-                    ),
-                  ],
-                  1
-                ),
-              ]),
+              _c(
+                "ul",
+                { staticClass: "navbar-nav" },
+                _vm._l(_vm.linksMenu, function (menu, index) {
+                  return _c(
+                    "li",
+                    { key: index, staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: { name: menu.name } },
+                        },
+                        [_vm._v(_vm._s(menu.label))]
+                      ),
+                    ],
+                    1
+                  )
+                }),
+                0
+              ),
             ]
           ),
         ]),

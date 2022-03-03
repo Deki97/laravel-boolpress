@@ -8,12 +8,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <router-link class="nav-link" :to="{ name: 'home' }">Home</router-link>
-                        </li>
-
-                        <li class="nav-item">
-                            <router-link class="nav-link" :to="{ name: 'about' }">About</router-link>
+                        <li v-for="(menu, index) in linksMenu" :key="index" class="nav-item">
+                            <router-link class="nav-link" :to="{ name: menu.name }">{{ menu.label }}</router-link>
                         </li>
                     </ul>
                 </div>
@@ -24,6 +20,20 @@
 
 <script>
 export default {
-    name: 'Header'
+    name: 'Header',
+    data: function() {
+        return {
+            linksMenu: [
+                {
+                    name: 'home',
+                    label: 'Home'
+                },
+                {
+                    name: 'about',
+                    label: 'About'
+                }
+            ],
+        }
+    }
 }
 </script>
