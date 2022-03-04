@@ -24,4 +24,22 @@ class PostController extends Controller
         // Devo convertire la collection di post in json (array di oggetti) per poterla ritornare
         return response()->json($response_array);
     }
+
+    public function show($slug) {
+        $post = Post::where('slug', '=', $slug)->first();
+
+        if($post) {
+            return response()->json([
+                'success' => true,
+                'results' => $post
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'results' => null
+            ]);
+        }
+
+        
+    }
 }
