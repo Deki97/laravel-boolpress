@@ -21,3 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // Qui dico che quando l'utente si trova in /api/posts, viene chiamata la funzione index del controller PostController
 Route::get('/posts', 'Api\PostController@index');
 Route::get('/posts/{slug}', 'Api\PostController@show');
+
+Route::get('/tags/{slug}', 'Api\TagController@show');

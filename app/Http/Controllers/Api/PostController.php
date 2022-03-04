@@ -38,8 +38,6 @@ class PostController extends Controller
                 'success' => false,
                 'results' => null
             ]);
-        }
-
-        
+        }   
     }
 }
