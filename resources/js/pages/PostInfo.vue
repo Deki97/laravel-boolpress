@@ -2,6 +2,8 @@
     <div class="container">
         <h1>{{ post.title }}</h1>
 
+        <h5 v-if="post.category">Category: {{ post.category.name }}</h5>
+
         <p>{{ post.content }}</p>
     </div>
 </template>
