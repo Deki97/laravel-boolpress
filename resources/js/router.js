@@ -7,6 +7,7 @@ import Home from './pages/Home.vue';
 import About from './pages/About.vue';
 import Blog from './pages/Blog.vue';
 import PostInfo from './pages/PostInfo.vue';
+import TagInfo from './pages/TagInfo.vue';
 import NotFound from './pages/NotFound.vue';
 
 const router = new VueRouter({
@@ -31,6 +32,11 @@ const router = new VueRouter({
             path: "/blog/:slug",
             name: "post-info",
             component: PostInfo
+        },
+        {
+            path: "/tags/:slug",
+            name: "tag-info",
+            component: TagInfo
         },
         {
             path: "/*",
