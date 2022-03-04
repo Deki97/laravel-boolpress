@@ -11,6 +11,10 @@
                         <h5 class="card-title">{{ post.title }}</h5>
                         <p class="card-text"> {{ truncateText(post.content, 80) }}</p>
                     </div>
+
+                    <div class="card-body">
+                        <router-link :to="{ name: 'post-info', params: { slug: post.slug } }">Vai all'articolo</router-link>
+                    </div>
                 </div>
             </div>
             <!-- End Single Post -->
