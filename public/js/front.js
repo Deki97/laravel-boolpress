@@ -3107,12 +3107,16 @@ var render = function () {
           "div",
           _vm._l(_vm.post.tags, function (tag) {
             return _c(
-              "span",
-              { key: tag.id, staticClass: "badge bg-info text-dark mx-2" },
+              "router-link",
+              {
+                key: tag.id,
+                staticClass: "badge bg-info text-dark mx-2",
+                attrs: { to: { name: "tag-info", params: { slug: tag.slug } } },
+              },
               [_vm._v(_vm._s(tag.name))]
             )
           }),
-          0
+          1
         )
       : _vm._e(),
     _vm._v(" "),
