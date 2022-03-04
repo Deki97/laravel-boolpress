@@ -4,6 +4,10 @@
 
         <h5 v-if="post.category">Category: {{ post.category.name }}</h5>
 
+        <div v-if="post.tags.length > 0">
+            <span v-for="tag in post.tags" :key="tag.id" class="badge bg-info text-dark mx-2">{{ tag.name }}</span>
+        </div>
+
         <p>{{ post.content }}</p>
     </div>
 </template>
