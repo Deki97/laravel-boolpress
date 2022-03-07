@@ -8,6 +8,7 @@ use App\Post;
 use App\Tag;
 use App\Category;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -56,6 +57,16 @@ class PostController extends Controller
         $new_post->fill($form_data);
         
         $new_post->slug = $this->getUniqueSlug($form_data['title']);
+
+        // Controllo che effettivamente l'utente abbia caricato un immagine
+        if(isset($form_data['image'])) {
+            // Caricamento dell'immagine nella cartella dei file
+            $img_path = Storage::put('post_images', $form_data['image']);
+            // dd($img_path);
+
+            // Salvataggio del percorso al file nella colonna image di post
+            $new_post->image = $img_path;
+        }
 
         $new_post->save();
 

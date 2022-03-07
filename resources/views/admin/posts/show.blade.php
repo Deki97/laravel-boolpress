@@ -19,6 +19,13 @@
             @endforelse
         </div>
 
+        {{-- Visualizzo l'immagine nel dettaglio del post, dopo aver controllato se esiste --}}
+        @if ($post->image)
+            <div>
+                <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}">
+            </div>
+        @endif
+
         
         <p>{{ $post->content }}</p>
 
