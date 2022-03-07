@@ -50,6 +50,11 @@
                 <textarea class="form-control" name="content" id="content" cols="30" rows="10">{{ old('content') }}</textarea>
             </div>
 
+            {{-- Validazione dell'immagine da caricare --}}
+            @error('image')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+
 
             {{-- Input tramite la quale posso fare upload di file, in questo caso dell'immagine del post --}}
             <div class="mb-4">

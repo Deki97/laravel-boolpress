@@ -162,7 +162,12 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'content' => 'required|max:60000',
             'category_id' => 'exists:categories,id|nullable',
-            'tags' => 'exists:tags,id'
+            'tags' => 'exists:tags,id',
+            // 'image' è già interpretato da Laravel come un jpg, png ecc..
+            // Settando image Laravel quindi si aspetta un file che sia in formato immagine
+            // Qui definisco inoltre che l'immagine non può pesare più di 512KB
+            // Mentre utilizzando 'size' al posto di 'max' dico di preciso che dimensione deve essere
+            'image' => 'image|max:512'
         ];
     }
 
