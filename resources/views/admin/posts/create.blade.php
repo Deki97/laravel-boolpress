@@ -50,6 +50,13 @@
                 <textarea class="form-control" name="content" id="content" cols="30" rows="10">{{ old('content') }}</textarea>
             </div>
 
+            
+            {{-- Input tramite la quale posso fare upload di file, in questo caso dell'immagine del post --}}
+            <div class="mb-4">
+                <label for="content" class="form-label">Image</label>
+                <input type="file">
+            </div>
+
             <button type="submit" class="btn btn-primary">Crea post</button>
           </form>
     </section>
