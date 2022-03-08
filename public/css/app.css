@@ -10962,3 +10962,7 @@ a.text-dark:focus {
   }
 }
 
+.current-image img {
+  width: 150px;
+}
+

@@ -49,6 +49,25 @@
                 <textarea class="form-control" name="content" id="content" cols="30" rows="10">{{ old('content', $post->content) }}</textarea>
             </div>
 
+            {{-- Validazione dell'immagine da caricare --}}
+            @error('image')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+
+            {{-- Input tramite la quale posso fare upload di file, in questo caso dell'immagine del post --}}
+            <div class="mb-4">
+                <label for="image" class="form-label">Image</label>
+                <input type="file" id="image" name="image">
+            </div>
+
+            {{-- Visualizzo l'anteprima dell'immagine attuale solo se è effettivamente presente per quel post --}}
+            @if ($post->image)
+                <div class="current-image">
+                    Immagine precaricata:
+                    <img src="{{ asset('storage/' . $post->image) }}" alt="">
+                </div>
+            @endif
+
             <button type="submit" class="btn btn-primary">Modifica</button>
           </form>
     </section>
