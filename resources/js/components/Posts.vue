@@ -7,6 +7,7 @@
             <!-- Single Post -->
             <div v-for="post in posts" :key="post.id" class="col">
                 <div class="card mb-2">
+                    <img v-if="post.image" :src="post.image" class="card-img-top" :alt="post.title">
                     <div class="card-body">
                         <h5 class="card-title">{{ post.title }}</h5>
                         <p class="card-text"> {{ truncateText(post.content, 80) }}</p>

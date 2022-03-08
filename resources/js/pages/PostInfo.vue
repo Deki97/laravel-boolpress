@@ -8,6 +8,8 @@
             <router-link v-for="tag in post.tags" :key="tag.id" class="badge bg-info text-dark mx-2" :to="{ name: 'tag-info', params: { slug: tag.slug }}">{{ tag.name }}</router-link>
         </div>
 
+        <img v-if="post.image" :src="post.image" class="card-img-top" :alt="post.title">
+
         <p>{{ post.content }}</p>
     </div>
 </template>

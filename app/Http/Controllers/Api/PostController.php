@@ -15,6 +15,12 @@ class PostController extends Controller
         // Mostro solo 4 elementi per pagina
         $posts = Post::paginate(4);
 
+        foreach($posts as $post) {
+            if($post->image) {
+                $post->image = url('storage/' . $post->image);
+            }
+        }
+
         // Tutte le chiamate api avranno nella risposta le chiavi success (andate a buon fine) e in results i risultati (post)
         $response_array = [
             'success' => true,
@@ -27,6 +33,10 @@ class PostController extends Controller
 
     public function show($slug) {
         $post = Post::where('slug', '=', $slug)->with(['category', 'tags'])->first();
+
+        if($post->image) {
+            $post->image = url('storage/' . $post->image);
+        }
 
         if($post) {
             return response()->json([

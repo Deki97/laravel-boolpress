@@ -2002,6 +2002,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Posts',
   data: function data() {
@@ -2141,6 +2142,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -2840,6 +2843,13 @@ var render = function () {
       _vm._l(_vm.posts, function (post) {
         return _c("div", { key: post.id, staticClass: "col" }, [
           _c("div", { staticClass: "card mb-2" }, [
+            post.image
+              ? _c("img", {
+                  staticClass: "card-img-top",
+                  attrs: { src: post.image, alt: post.title },
+                })
+              : _vm._e(),
+            _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _c("h5", { staticClass: "card-title" }, [
                 _vm._v(_vm._s(post.title)),
@@ -3118,6 +3128,13 @@ var render = function () {
           }),
           1
         )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.post.image
+      ? _c("img", {
+          staticClass: "card-img-top",
+          attrs: { src: _vm.post.image, alt: _vm.post.title },
+        })
       : _vm._e(),
     _vm._v(" "),
     _c("p", [_vm._v(_vm._s(_vm.post.content))]),
