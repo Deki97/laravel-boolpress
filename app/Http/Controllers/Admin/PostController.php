@@ -129,6 +129,19 @@ class PostController extends Controller
         if($form_data['title'] != $post->title) {
             $form_data['slug'] = $this->getUniqueSlug($form_data['title']);
         }
+
+        if($form_data['image']) {
+            // Rimuovo la vecchia immagine solo se c'è
+            if($post->image) {
+                Storage::delete($post->image);
+            }
+
+            // Carico la nuova immagine
+            $img_path = Storage::put('post_images', $form_data['image']);
+
+            // Salvo il path dell'immagine nella colonna
+            $form_data['image'] = $img_path;
+        }
         
         $post->update($form_data);
 
@@ -151,6 +164,10 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $post->tags()->sync([]);
+
+        if($post->image) {
+            Storage::delete($post->image);
+        }
         
         $post->delete();
 
