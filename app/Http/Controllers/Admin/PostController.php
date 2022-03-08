@@ -9,6 +9,8 @@ use App\Tag;
 use App\Category;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewPostAdminNotification;
 
 class PostController extends Controller
 {
@@ -73,6 +75,8 @@ class PostController extends Controller
         if(isset($form_data['tags'])) {
             $new_post->tags()->sync($form_data['tags']);
         }
+
+        Mail::to('editor@boolpress.it')->send(new NewPostAdminNotification($new_post));
 
         return redirect()->route('admin.posts.show', ['post' => $new_post->id]);
     }
