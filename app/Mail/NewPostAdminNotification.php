@@ -18,9 +18,9 @@ class NewPostAdminNotification extends Mailable
      *
      * @return void
      */
-    public function __construct($new_post)
+    public function __construct($_new_post)
     {
-        $this->$new_post = $new_post;
+        $this->new_post = $_new_post;
     }
 
     /**
