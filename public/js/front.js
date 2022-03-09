@@ -2127,22 +2127,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Contacts',
   data: function data() {
     return {
       email: '',
       name: '',
-      message: ''
+      message: '',
+      success: false,
+      errors: {}
     };
   },
   methods: {
     sendMessage: function sendMessage() {
+      var _this = this;
+
       axios.post('/api/leads/store', {
         email: this.email,
         name: this.name,
         message: this.message
-      }).then(function (response) {});
+      }).then(function (response) {
+        if (response.data.success) {
+          _this.name = '';
+          _this.email = '';
+          _this.message = '';
+          _this.success = true;
+        } else {
+          _this.success = false;
+          _this.errors = response.data.errors;
+        }
+      });
     }
   }
 });
@@ -3096,6 +3130,12 @@ var render = function () {
   return _c("div", { staticClass: "container" }, [
     _c("h1", [_vm._v("Contact Us")]),
     _vm._v(" "),
+    _vm.success
+      ? _c("div", { staticClass: "mb-4" }, [
+          _vm._v("La tua mail è stata inviata correttamente"),
+        ])
+      : _vm._e(),
+    _vm._v(" "),
     _c("form", [
       _c("div", { staticClass: "mb-4" }, [
         _c("label", { staticClass: "form-label", attrs: { for: "email" } }, [
@@ -3125,6 +3165,18 @@ var render = function () {
         }),
       ]),
       _vm._v(" "),
+      _vm.errors.email
+        ? _c(
+            "div",
+            _vm._l(_vm.errors.email, function (error, index) {
+              return _c("p", { key: index }, [
+                _vm._v("\n                " + _vm._s(error) + "\n            "),
+              ])
+            }),
+            0
+          )
+        : _vm._e(),
+      _vm._v(" "),
       _c("div", { staticClass: "mb-4" }, [
         _c("label", { staticClass: "form-label", attrs: { for: "name" } }, [
           _vm._v("Name"),
@@ -3153,6 +3205,18 @@ var render = function () {
         }),
       ]),
       _vm._v(" "),
+      _vm.errors.name
+        ? _c(
+            "div",
+            _vm._l(_vm.errors.name, function (error, index) {
+              return _c("p", { key: index }, [
+                _vm._v("\n                " + _vm._s(error) + "\n            "),
+              ])
+            }),
+            0
+          )
+        : _vm._e(),
+      _vm._v(" "),
       _c("div", { staticClass: "mb-4" }, [
         _c("label", { staticClass: "form-label", attrs: { for: "message" } }, [
           _vm._v("Message text"),
@@ -3180,6 +3244,18 @@ var render = function () {
           },
         }),
       ]),
+      _vm._v(" "),
+      _vm.errors.message
+        ? _c(
+            "div",
+            _vm._l(_vm.errors.message, function (error, index) {
+              return _c("p", { key: index }, [
+                _vm._v("\n                " + _vm._s(error) + "\n            "),
+              ])
+            }),
+            0
+          )
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "button",
