@@ -2172,6 +2172,7 @@ __webpack_require__.r(__webpack_exports__);
           _this.email = '';
           _this.message = '';
           _this.success = true;
+          _this.error = {};
         } else {
           _this.success = false;
           _this.errors = response.data.errors;

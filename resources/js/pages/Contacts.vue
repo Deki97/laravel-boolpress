@@ -68,6 +68,7 @@ export default {
                     this.email = '';
                     this.message = '';
                     this.success = true;
+                    this.error = {};
                 } else {
                     this.success = false;
                     this.errors = response.data.errors;
