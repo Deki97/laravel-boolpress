@@ -8,6 +8,7 @@ import About from './pages/About.vue';
 import Blog from './pages/Blog.vue';
 import PostInfo from './pages/PostInfo.vue';
 import TagInfo from './pages/TagInfo.vue';
+import Contacts from './pages/Contacts.vue';
 import NotFound from './pages/NotFound.vue';
 
 const router = new VueRouter({
@@ -37,6 +38,11 @@ const router = new VueRouter({
             path: "/tags/:slug",
             name: "tag-info",
             component: TagInfo
+        },
+        {
+            path: "/contacts",
+            name: "contacts",
+            component: Contacts
         },
         {
             path: "/*",
